@@ -1,21 +1,21 @@
-Instructions
+# Instructions
 Install Go:
 Ensure you have Go installed on your machine. You can download and install it from the official Go website.
 
-Save the Code:
+# Save the Code:
 Save the above code to a file named cron_parser.go.
 
-Build the Program:
+# Build the Program:
 Open your terminal and navigate to the directory containing cron_parser.go. Then, run the following command to build the program:
 go build cron_parser.go
 
 
-Run the Program:
+# Run the Program:
 Execute the program with a cron expression as an argument:
 ./cron_parser "*/15 0 1,15 * 1-5 /usr/bin/find"
 
 
-Expected Output:
+### Expected Output:
 minute         0 15 30 45
 hour           0
 day of month   1 15
