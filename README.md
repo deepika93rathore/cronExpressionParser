@@ -27,7 +27,6 @@ command        /usr/bin/find
 A simple Go command line application to parse a cron string and expand each field to show the times at which it will run.
 
 ## Usage
-
 ```sh
 cron_parser "<cron_expression>"
 
