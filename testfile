@@ -1,0 +1,43 @@
+
+### `test_cron_parser.go`
+
+You can write unit tests for the `expandField` function to ensure it behaves correctly. Here is an example test file:
+
+```go
+package main
+
+import (
+	"reflect"
+	"testing"
+)
+
+func TestExpandField(t *testing.T) {
+	tests := []struct {
+		field string
+		min   int
+		max   int
+		want  []int
+	}{
+		{"*", 0, 59, rangeSlice(0, 59)},
+		{"*/15", 0, 59, []int{0, 15, 30, 45}},
+		{"0", 0, 59, []int{0}},
+		{"1,15", 0, 59, []int{1, 15}},
+		{"1-5", 0, 59, rangeSlice(1, 5)},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.field, func(t *testing.T) {
+			if got := expandField(tt.field, tt.min, tt.max); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("expandField() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func rangeSlice(start, end int) []int {
+	var result []int
+	for i := start; i <= end; i++ {
+		result = append(result, i)
+	}
+	return result
+}
